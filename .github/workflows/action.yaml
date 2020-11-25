@@ -1,0 +1,18 @@
+jobs:
+  run:
+    name: Ci
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Start uU
+        uses: actions/checkout@v2
+      - name: Download Dependencies
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Test
+        run: ./verify/action
+
+name: Build
+
+on:
+  schedule:
+    - cron: "30 */6 * * *"
